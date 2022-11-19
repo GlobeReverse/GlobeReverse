@@ -1,16 +1,16 @@
-### Hi there 👋
+### Hi there 👋, Hello Im Globe
+#### A Lua And Website Developer
+![A Lua And Website Developer](https://i.imgur.com/k7hPyYh.jpg)
 
-<!--
-**GlobeReverse/GlobeReverse** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+Currently Working On Roblox Scripts Such As Moonlight
 
-Here are some ideas to get you started:
+Skills: Lua / Php/ JS / HTML / CSS
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+- 🔭 I’m currently working on Moonlight Hub 
+- 🌱 I’m currently learning C++ and Lua 
+- 📫 How to reach me: On Discord Globe#0001 
+- ⚡ Fun fact: 1+1 = 2 
+
+
+
+
