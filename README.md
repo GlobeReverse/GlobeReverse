@@ -16,5 +16,8 @@ Skills: Lua / Php/ JS / HTML / CSS
 
 <!-- ![GitHub Streak](https://streak-stats.demolab.com?user=ForrestKnight&theme=gruvbox&border_radius=4.5) -->
 
-## Discord Support
-[![My Discord](https://discordapp.com/api/guilds/1033329895134208050/widget.png?style=banner2)](https://discord.gg/VjVWrFGVMs)
+## Discord 
+</h1>
+<p align="center">
+  <a href="https://discord.gg/VjVWrFGVMs"><img src="https://discordapp.com/api/guilds/1033329895134208050/widget.png?style=banner2" alt="Discord server"></a>
+</p>
