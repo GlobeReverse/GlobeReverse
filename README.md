@@ -17,4 +17,4 @@ Skills: Lua / Php/ JS / HTML / CSS
 <!-- ![GitHub Streak](https://streak-stats.demolab.com?user=ForrestKnight&theme=gruvbox&border_radius=4.5) -->
 
 ## Discord 
-[![Discord](https://discord.com/api/guilds/1033329895134208050/widget.png?style=banner4)](https://discord.gg/VjVWrFGVMs)
+[![Discord](https://www.allkpop.com/upload/2021/01/content/262046/1611711962-discord-button.png)](https://discord.gg/VjVWrFGVMs)
