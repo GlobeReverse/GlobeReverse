@@ -17,4 +17,4 @@ Skills: Lua / Php/ JS / HTML / CSS
 <!-- ![GitHub Streak](https://streak-stats.demolab.com?user=ForrestKnight&theme=gruvbox&border_radius=4.5) -->
 
 ## Discord 
-[![Discord](https://assets-global.website-files.com/6257adef93867e50d84d30e2/625eb604bb8605784489d361_Discord-Logo%2BWordmark-Color%20(1).png)](https://discord.gg/VjVWrFGVMs)
+[![Discord]<iframe src="https://discord.com/widget?id=1033329895134208050&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
