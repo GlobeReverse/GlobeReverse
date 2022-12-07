@@ -17,4 +17,4 @@ Skills: Lua / Php/ JS / HTML / CSS
 <!-- ![GitHub Streak](https://streak-stats.demolab.com?user=ForrestKnight&theme=gruvbox&border_radius=4.5) -->
 
 ## Discord 
-[![Discord]<iframe src="https://discord.com/widget?id=1033329895134208050&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+[![Discord][<iframe src="https://discord.com/widget?id=1033329895134208050&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>](https://discord.com/api/guilds/1033329895134208050/widget.json)
