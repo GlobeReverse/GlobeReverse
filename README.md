@@ -4,7 +4,7 @@
 
 Currently Working On Roblox Scripts Such As Moonlight
 
-Skills: Lua / Php/ JS / HTML / CSS
+Skills: Lua / Php / HTML / CSS
 
 - 🔭 I’m currently working on Moonlight Hub 
 - 🌱 I’m currently learning C++ and Lua 
