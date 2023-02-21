@@ -454,6 +454,10 @@ do
                 end
             end 
 
+            for i,v in pairs(Moonlight.Toggles) do 
+                config[i] = v:Get()
+            end 
+
             for i,v in pairs(library.pointers) do
                 if typeof(v:Get()) == "table" and v:Get().Transparency then
                     local hue, sat, val = v:Get().Color:ToHSV()
