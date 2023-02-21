@@ -675,6 +675,13 @@ getgenv().Moonlight = {}
                             window.watermark.visible = updateValue
                             window.watermark:Visibility()
                         end
+                        if updateType == "Offset" then 
+                            watermark_outline.Position = updateValue
+                            watermark_inline.Position = updateValue
+                            watermark_frame.Position = updateValue
+                            watermark_accent.Position = updateValue
+                            watermark_title.Position = updateValue
+                        end
                     end
                     --
                     utility:Connection(rs.RenderStepped, function(fps)
