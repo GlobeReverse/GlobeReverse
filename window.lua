@@ -1358,7 +1358,7 @@ do
             Visible = page.open
         }, section.visibleContent)
         --
-        if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " and not Moonlight.Options[tostring(pointer)] then
+        if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " then
             Moonlight.Options[tostring(pointer)] = label
         end
         --
@@ -1445,7 +1445,7 @@ do
             end
         end
         --
-        if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " and not Moonlight.Toggles[tostring(pointer)] then
+        if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " then
             Moonlight.Toggles[tostring(pointer)] = toggle
         end
         --
@@ -1825,7 +1825,7 @@ do
                 end
             end
             --
-            if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " and not Moonlight.Options[tostring(pointer)] then
+            if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " then
                 Moonlight.Options[tostring(pointer)] = colorpicker
             end
             --
@@ -2082,7 +2082,7 @@ do
                 end
             end
             --
-            if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " and not Moonlight.Options[tostring(pointer)] then
+            if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " then
                 Moonlight.Options[tostring(pointer)] = keybind
             end
             --
@@ -2214,7 +2214,7 @@ do
             end
         end
         --
-        if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " and not Moonlight.Options[tostring(pointer)] then
+        if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " then
             Moonlight.Options[tostring(pointer)] = slider
         end
         --
@@ -2283,7 +2283,7 @@ do
             end
         end
         --
-        if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " and not Moonlight.Options[tostring(pointer)] then
+        if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " then
             Moonlight.Options[tostring(pointer)] = button
         end
         --
@@ -2559,7 +2559,7 @@ do
             end
         end
         --
-        if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " and not Moonlight.Options[tostring(pointer)] then
+        if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " then
             Moonlight.Options[tostring(pointer)] = dropdown
         end
         --
@@ -2803,7 +2803,7 @@ do
             end
         end
         --
-        if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " and not Moonlight.Options[tostring(pointer)] then
+        if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " then
             Moonlight.Options[tostring(pointer)] = multibox
         end
         --
@@ -3064,7 +3064,7 @@ do
             end
         end
         --
-        if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " and not Moonlight.Options[tostring(pointer)] then
+        if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " then
             Moonlight.Options[tostring(pointer)] = keybind
         end
         --
@@ -3454,7 +3454,7 @@ do
             end
         end
         --
-        if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " and not Moonlight.Options[tostring(pointer)] then
+        if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " then
             Moonlight.Options[tostring(pointer)] = colorpicker
         end
         --
@@ -3831,7 +3831,7 @@ do
                 end
             end
             --
-            if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " and not Moonlight.Options[tostring(pointer)] then
+            if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " then
                 Moonlight.Options[tostring(pointer)] = keybind
             end
             --
