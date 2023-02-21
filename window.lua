@@ -477,12 +477,6 @@ do
                 if library.pointers[i] then
                     library.pointers[i]:Set(v)
                 end
-                if library.Toggles[i] then 
-                    library.Toggles[i]:Set(v)
-                end
-                if library.Options[i] then 
-                    library.Options[i]:Set(v)
-                end
             end
         end
         --
@@ -1452,7 +1446,7 @@ do
         end
         --
         if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " then
-            Moonlight.Toggles[tostring(pointer)] = toggle
+            Moonlight.pointers[tostring(pointer)] = toggle
         end
         --
         section.currentAxis = section.currentAxis + 15 + 4
@@ -1832,7 +1826,7 @@ do
             end
             --
             if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " then
-                Moonlight.Options[tostring(pointer)] = colorpicker
+                Moonlight.pointers[tostring(pointer)] = colorpicker
             end
             --
             toggle.addedAxis = toggle.addedAxis + 30 + 4 + 2
@@ -2089,7 +2083,7 @@ do
             end
             --
             if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " then
-                Moonlight.Options[tostring(pointer)] = keybind
+                Moonlight.pointers[tostring(pointer)] = keybind
             end
             --
             toggle.addedAxis = 40+4+2
@@ -2221,7 +2215,7 @@ do
         end
         --
         if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " then
-            Moonlight.Options[tostring(pointer)] = slider
+            Moonlight.pointers[tostring(pointer)] = slider
         end
         --
         section.currentAxis = section.currentAxis + 27 + 4
@@ -2566,7 +2560,7 @@ do
         end
         --
         if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " then
-            Moonlight.Options[tostring(pointer)] = dropdown
+            Moonlight.pointers[tostring(pointer)] = dropdown
         end
         --
         section.currentAxis = section.currentAxis + 35 + 4
@@ -2810,7 +2804,7 @@ do
         end
         --
         if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " then
-            Moonlight.Options[tostring(pointer)] = multibox
+            Moonlight.pointers[tostring(pointer)] = multibox
         end
         --
         section.currentAxis = section.currentAxis + 35 + 4
@@ -3071,7 +3065,7 @@ do
         end
         --
         if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " then
-            Moonlight.Options[tostring(pointer)] = keybind
+            Moonlight.pointers[tostring(pointer)] = keybind
         end
         --
         section.currentAxis = section.currentAxis + 17 + 4
@@ -3461,7 +3455,7 @@ do
         end
         --
         if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " then
-            Moonlight.Options[tostring(pointer)] = colorpicker
+            Moonlight.pointers[tostring(pointer)] = colorpicker
         end
         --
         section.currentAxis = section.currentAxis + 15 + 4
@@ -3838,7 +3832,7 @@ do
             end
             --
             if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " then
-                Moonlight.Options[tostring(pointer)] = keybind
+                Moonlight.pointers[tostring(pointer)] = keybind
             end
             --
             return colorpicker
