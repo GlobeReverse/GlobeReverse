@@ -1,4 +1,4 @@
-lgetgenv().Moonlight = {}
+getgenv().Moonlight = {}
 
 Moonlight.Toggles = {}
 Moonlight.Options = {}
