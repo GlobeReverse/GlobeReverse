@@ -477,6 +477,12 @@ do
                 if library.pointers[i] then
                     library.pointers[i]:Set(v)
                 end
+                if library.Toggles[i] then 
+                    library.Toggles[i]:Set(v)
+                end
+                if library.Options[i] then 
+                    library.Options[i]:Set(v)
+                end
             end
         end
         --
