@@ -20,7 +20,8 @@ local GetDescendants = game.GetDescendants
 local GetChildren = game.GetChildren
 local GetPlayers = Players.GetPlayers
 
-local UILibrary = { 
+local lib = function()
+    local UILibrary = { 
         flags = {}, 
         LibraryName = game:GetService('HttpService'):GenerateGUID(false),
         Unloaded = false, 
@@ -5851,3 +5852,6 @@ local UILibrary = {
     end
     
     return UILibrary
+end
+
+return lib
