@@ -20,10 +20,6 @@ local GetDescendants = game.GetDescendants
 local GetChildren = game.GetChildren
 local GetPlayers = Players.GetPlayers
 
-
-
-
-
 local UILibrary = { 
         flags = {}, 
         LibraryName = game:GetService('HttpService'):GenerateGUID(false),
@@ -4518,8 +4514,8 @@ local UILibrary = {
                         callback(UILibrary.flags[sett.Flag])
                     end
                 end)
-            else 
-                UILibrary.flags[sett.Flag] = not UILibrary.flags[sett.Flag]
+            elseif typeof(new) == "boolean" 
+                UILibrary.flags[sett.Flag] = new
                 toggleEnabled = new
 
                 functions.setToggle(UILibrary.flags[sett.Flag],element)
