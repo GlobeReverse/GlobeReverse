@@ -1,4 +1,5 @@
 -- // Variables \\ --
+local Workspace = game:GetService("Workspace")
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
@@ -6,13 +7,11 @@ local RunService = game:GetService("RunService")
 local HttpService = game:GetService("HttpService")
 local CoreGui = game:GetService("CoreGui")
 
-local cache = { threads = {}, hooking = {}, signals = {}, debris = {}, drawings = {}, ticks = { MovementRag = tick(), LastPickUp = tick(), Break = tick() }, variables = { DoingSafe = false } }
-
 local Client = Players.LocalPlayer
 local Asset = syn and getsynasset or getcustomasset
 local Mouse = Client.GetMouse(Client)
-local Camera = workspace.CurrentCamera
-local WorldToScreenPoint = workspace.CurrentCamera.WorldToScreenPoint
+local Camera = Workspace.CurrentCamera
+local WorldToScreenPoint = Workspace.CurrentCamera.WorldToScreenPoint
 
 local FindFirstChild = game.FindFirstChild
 local FindFirstChildWhichIsA = game.FindFirstChildWhichIsA
@@ -27,6 +26,8 @@ local UILibrary = {
     LibraryName = game:GetService('HttpService'):GenerateGUID(false),
     Unloaded = false, 
     config = {}, -- saves the set function as flag name so can get value from config and set the flag as that
+    keybind = {}, -- saves the keybind toggle functions
+    keybinds = {}, -- store the keybind value
 }
 
 --// Modules
@@ -60,6 +61,16 @@ local function getObjGen()
                 DropShadowHolder_69 = Instance.new("Frame"),
                 DropShadow_69 = Instance.new("ImageLabel"),
                 UICorner_69 = Instance.new("UICorner"),
+
+                -- troll 
+                Keybind_69 = Instance.new("Frame"),
+                UICorner_69 = Instance.new("UICorner"),
+                DropShadowHolder_69 = Instance.new("Frame"),
+                DropShadow_69 = Instance.new("ImageLabel"),
+                Text_69 = Instance.new("TextLabel"),
+                HoverFrame_69 = Instance.new("Frame"),
+                UICorner_69 = Instance.new("UICorner"),
+
 
                 Toggle = Instance.new("Frame"),
                 UIPadding = Instance.new("UIPadding"),
@@ -458,6 +469,60 @@ local function getObjGen()
 
             Gui.UICorner_5.Parent = Gui.Toggle
 
+            -- lets try this 
+            Gui.UICorner_69.CornerRadius = UDim.new(0.100000001, 0)
+            Gui.UICorner_69.Parent = Gui.Toggle
+            
+            Gui.DropShadowHolder_69.Name = "DropShadowHoldere"
+            Gui.DropShadowHolder_69.Parent = Gui.Toggle
+            Gui.DropShadowHolder_69.BackgroundTransparency = 1.000
+            Gui.DropShadowHolder_69.BorderSizePixel = 0
+            Gui.DropShadowHolder_69.Size = UDim2.new(1, 0, 1, 0)
+            Gui.DropShadowHolder_69.ZIndex = 0
+            
+            Gui.DropShadow_69.Name = "DropShadowe"
+            Gui.DropShadow_69.Parent = Gui.DropShadowHolder_69
+            Gui.DropShadow_69.AnchorPoint = Vector2.new(0.5, 0.5)
+            Gui.DropShadow_69.BackgroundTransparency = 1.000
+            Gui.DropShadow_69.BorderSizePixel = 0
+            Gui.DropShadow_69.Position = UDim2.new(-1.7, 0, 0.5, 0) -- Move to the middle vertically
+            Gui.DropShadow_69.Size = UDim2.new(1, 32, 1, 32)
+            Gui.DropShadow_69.ZIndex = 109
+            Gui.DropShadow_69.Image = "rbxassetid://6014261993"
+            Gui.DropShadow_69.ImageColor3 = Color3.fromRGB(0, 0, 0)
+            Gui.DropShadow_69.ImageTransparency = 0.500
+            Gui.DropShadow_69.ScaleType = Enum.ScaleType.Slice
+            Gui.DropShadow_69.SliceCenter = Rect.new(49, 49, 450, 450)
+            
+            Gui.Text_69.Name = "TextKey"
+            Gui.Text_69.Parent = Gui.DropShadow_69
+            Gui.Text_69.AnchorPoint = Vector2.new(0.5, 0.5)
+            Gui.Text_69.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            Gui.Text_69.BackgroundTransparency = 1.000
+            Gui.Text_69.Position = UDim2.new(0.5, 0, 0.5, 0)
+            Gui.Text_69.Size = UDim2.new(0.5, 0, 0.5, 0)
+            Gui.Text_69.ZIndex = 112
+            Gui.Text_69.Font = Enum.Font.GothamSemibold
+            Gui.Text_69.Text = "..."
+            Gui.Text_69.TextColor3 = Color3.fromRGB(100, 100, 100)
+            Gui.Text_69.TextSize = 14.000
+            
+            Gui.HoverFrame_69.Name = "HoverFrame_69e"
+            Gui.HoverFrame_69.Parent = Gui.DropShadow_69
+            Gui.HoverFrame_69.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
+            Gui.HoverFrame_69.BackgroundTransparency = 1.000
+            Gui.HoverFrame_69.BorderSizePixel = 0
+            Gui.HoverFrame_69.AnchorPoint = Vector2.new(0.5, 0.5)
+            Gui.HoverFrame_69.Size = UDim2.new(0.8, 0, 0.5, 0)
+            Gui.HoverFrame_69.Position = UDim2.new(0.5, 0, 0.5, 0)
+            Gui.HoverFrame_69.ZIndex = 111
+            
+            Gui.UICorner_10.CornerRadius = UDim.new(0.100000001, 0)
+            Gui.UICorner_10.Parent = Gui.HoverFrame_69
+                            
+
+
+            --
             Gui.DropShadowHolder_2.Name = "DropShadowHolder"
             Gui.DropShadowHolder_2.Parent = Gui.Toggle
             Gui.DropShadowHolder_2.BackgroundTransparency = 1.000
@@ -4360,7 +4425,7 @@ function UILibrary.Section:Checkbox(sett, callback)
     return meta
 end
 
-function UILibrary.Section:Toggle(sett, callback)
+function UILibrary.Section:Toggle(sett, callback)   
     UILibrary.flags[sett.Flag] = sett.Default
     local functions = {}
     functions.__index = functions
@@ -4372,13 +4437,17 @@ function UILibrary.Section:Toggle(sett, callback)
     local element = cheatBase.Content.ElementContent.Toggle
 
     local toggleEnabled = false
+    local currentKb = nil
+    local keyPressConn = nil
+    local Clicked = false
 
-    functions.setValue = function(new)
-        if getgenv().Unloaded then return end 
-        UILibrary.flags[sett.Flag] = new
-        toggleEnabled = new
+    local function updateSize()
 
-        if new then
+    end
+    
+
+    functions.setToggle = function(value,element)
+        if value then 
             TweenService:Create(
                 element.Content.Frame,
                 TI,
@@ -4394,7 +4463,7 @@ function UILibrary.Section:Toggle(sett, callback)
                     BackgroundColor3 = Color3.fromRGB(134, 142, 255)
                 }
             ):Play()
-        else
+        else 
             TweenService:Create(
                 element.Content.Frame,
                 TI,
@@ -4411,10 +4480,57 @@ function UILibrary.Section:Toggle(sett, callback)
                 }
             ):Play()
         end
+    end
 
-        callback(toggleEnabled)
+    functions.setValue = function(new)
+        if getgenv().Unloaded then return end 
+
+        if typeof(new) == "EnumItem" then 
+            Clicked = true 
+            element.DropShadowHoldere.DropShadowe.TextKey.Text = new.Name
+            currentKb = new
+
+            if keyPressConn then
+                keyPressConn:Disconnect()
+            end
+
+            currentKBInfo = {}
+
+            keyPressConn =
+            game:GetService("UserInputService").InputBegan:Connect(
+            function(input, gp)
+                if gp then
+                    return
+                end
+
+                if input.UserInputType == Enum.UserInputType.Keyboard and input.KeyCode == currentKb then
+                    UILibrary.flags[sett.Flag] = not UILibrary.flags[sett.Flag]  
+
+                    functions.setToggle(UILibrary.flags[sett.Flag],element)
+                    callback(UILibrary.flags[sett.Flag])
+                elseif input.UserInputType.Name == currentKb.Name then
+                    UILibrary.flags[sett.Flag] = not UILibrary.flags[sett.Flag]  
+
+                    functions.setToggle(UILibrary.flags[sett.Flag],element)
+                    callback(UILibrary.flags[sett.Flag])
+                end
+            end)
+        elseif typeof(new) == "boolean" then
+            UILibrary.flags[sett.Flag] = new
+            toggleEnabled = new
+
+            functions.setToggle(UILibrary.flags[sett.Flag],element)
+    
+            callback(UILibrary.flags[sett.Flag])
+        end
+    end
+
+    functions.setBind = function(bind)
+        currentKb = bind
+        element.DropShadowHoldere.DropShadowe.TextKey.Text = bind.Name
     end
     
+    UILibrary.keybind[sett.KeyFlag] = functions.setBind
     UILibrary.config[sett.Flag] = functions.setValue
 
     functions.getName = function()
@@ -4422,14 +4538,92 @@ function UILibrary.Section:Toggle(sett, callback)
     end
 
     functions.getValue = function()
-        return toggleEnabled
+        return UILibrary.flags[sett.Flag]
     end
+
+    functions.getFlag = function()
+        return sett.KeyFlag
+    end
+
+    local rebinding = false
+    local conn
 
     setupEffects(element, element.HoverFrame):Connect(
         function()
             functions.setValue(not toggleEnabled)
         end
     )
+
+    setupEffects(element.DropShadowHoldere.DropShadowe.HoverFrame_69e, element.DropShadowHoldere.DropShadowe.HoverFrame_69e):Connect(
+        function()
+            if rebinding then
+                return
+            end
+
+            if Clicked then 
+                if currentKBInfo.old and currentKBInfo.set ~= functions.setValue then
+                    return
+                end
+            end
+
+            rebinding = true
+
+            element.DropShadowHoldere.DropShadowe.TextKey.Text = "..."
+            updateSize()
+
+            local old = functions.getValue()
+
+            conn =
+                game:GetService("UserInputService").InputBegan:Connect(function(input, gp)
+                    if string.match(tostring(input.KeyCode):lower(),"escape") then 
+                        currentKb = Enum.KeyCode.Unknown
+                        UILibrary.keybinds[functions.getFlag()] = Enum.KeyCode.Unknown
+                        if conn then conn:Disconnect() end 
+
+                        rebinding = false
+
+                        element.DropShadowHoldere.DropShadowe.TextKey.Text = "None"
+                    else 
+                        if input.UserInputType == Enum.UserInputType.Keyboard then
+                            currentKb = input.KeyCode
+                            UILibrary.keybinds[functions.getFlag()] = currentKb
+    
+                            rebinding = false
+    
+                            functions.setValue(currentKb)
+                            conn:Disconnect()
+                        elseif input.UserInputType == Enum.UserInputType.MouseButton2 or input.UserInputType == Enum.UserInputType.MouseButton1 then
+                            currentKb = input.UserInputType
+                            UILibrary.keybinds[functions.getFlag()] = currentKb
+    
+                            rebinding = false
+    
+                            functions.setValue(currentKb)
+                            conn:Disconnect()
+                        end
+                    end
+                end
+            )
+
+            if old then 
+                currentKBInfo.old = old
+            end
+
+            pcall(function()
+                if conn ~= nil then 
+                    currentKBInfo.conn = conn
+                end
+
+                currentKBInfo.set = functions.setValue
+            end)
+        end
+    )
+
+    if sett.Bind then 
+        functions.setValue(sett.Bind)
+    else 
+        element.DropShadowHoldere.DropShadowe.TextKey.Text = "None"
+    end
 
     if sett.Default then
         functions.setValue(sett.Default)
