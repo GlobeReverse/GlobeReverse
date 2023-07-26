@@ -95,3 +95,10 @@ shared.Network.ValidBodyParts = function(self, plr, bodyparts)
 
     return passedValidBodyParts
 end
+
+task.spawn(function()
+    while task.wait(60) do
+        game:GetService("VirtualUser"):CaptureController()
+        game:GetService("VirtualUser"):ClickButton2(Vector2.new(0, 0))
+    end
+end)
