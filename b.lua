@@ -69,11 +69,12 @@ shared.Network.IsValid = function(self, plr)
     return true
 end
 
-shared.Network.DistanceFromMouse = function(self, vector2)
-    local mouse = game:GetService "Players".LocalPlayer:GetMouse()
+shared.Network.DistanceFromMouse = function(self, vector3)
+    local mouse = game:GetService("Players").LocalPlayer:GetMouse()
     local mousePosition = Vector2.new(mouse.X, mouse.Y)
 
-    return (vector2 - mousePosition).Magnitude
+    local vector2Position = Vector2.new(vector3.X, vector3.Y)
+    return (vector2Position - mousePosition).Magnitude
 end
 
 shared.Network.ValidBodyParts = function(self, plr, bodyparts)
