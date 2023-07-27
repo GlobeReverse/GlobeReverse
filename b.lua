@@ -76,25 +76,3 @@ shared.Network.DistanceFromMouse = function(self, vector2)
 
     return (vector2 - mousePosition).Magnitude
 end
-
-shared.Network.ValidBodyParts = function(self, plr, bodyparts)
-    local passedValidBodyParts = {}
-
-    if not bodyparts then
-        bodyparts = { "Head", "Torso", "Left Arm", "Right Arm", "Left Leg", "Right Leg" }
-    end
-
-    if not shared.Network:IsValid(plr) then
-        return passedValidBodyParts
-    end
-
-    for _, bp in next, bodyparts do
-        warn(bp)
-        if FindFirstChild(plr.Character, bp) then
-            print(bp)
-            table.insert(passedValidBodyParts, bp)
-        end
-    end
-
-    return passedValidBodyParts
-end
