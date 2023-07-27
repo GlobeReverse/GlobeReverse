@@ -89,6 +89,7 @@ shared.Network.ValidBodyParts = function(self, plr, bodyparts)
     end
 
     for _, bp in next, bodyparts do
+        warn(bp)
         if FindFirstChild(plr.Character, bp) then
             print(bp)
             table.insert(passedValidBodyParts, bp)
