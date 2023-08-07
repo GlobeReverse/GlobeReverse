@@ -449,7 +449,7 @@ local function runGroup(group)
 
         local allowDraw = true 
 
-        if self.customVisible and self.customVisible(v.primarypart,self) ~= true then 
+        if self.customVisible ~= nil and self.customVisible(v.primarypart,self) ~= true then 
             allowDraw = false 
         end 
 
