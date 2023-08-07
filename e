@@ -449,12 +449,6 @@ local function runGroup(group)
 
         local allowDraw = true 
 
-        pcall(function()
-            if self.customVisible ~= nil and self.customVisible(v.primarypart,self) ~= true then 
-                allowDraw = false 
-            end 
-        end)
-
         if not allowDraw then
             for i,v in pairs(v.Objects) do
                 v.Visible = false
