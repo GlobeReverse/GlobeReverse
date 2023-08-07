@@ -182,9 +182,11 @@ function module.newGroup(settings)
         })
 
         model:GetPropertyChangedSignal("Parent"):Connect(function()
-            if model.Parent == nil and self.deleteOnNil ~= false then
-                box:Remove()
-            end
+            pcall(function()
+                if model.Parent == nil and self.deleteOnNil ~= false then
+                    box:Remove()
+                end
+            end)
         end)
 
         local hum = model:FindFirstChildOfClass("Humanoid") or (model.Parent and model.Parent:FindFirstChildOfClass("Humanoid"))
