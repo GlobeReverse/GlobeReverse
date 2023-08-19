@@ -514,7 +514,8 @@ end
 local crnt = tick()
 
 game:GetService("RunService").RenderStepped:Connect(function(dt)
-    if shared.Unloaded then 
+    if shared.Unloaded == true then 
+        warn('esp unloaded')
         for i,v in pairs(espGroups) do 
             for x,y in pairs(v.espObjects) do 
                 v.espObjects[y]:Remove()
