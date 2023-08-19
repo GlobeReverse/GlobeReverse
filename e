@@ -21,11 +21,6 @@ local GetDescendants = game.GetDescendants
 local GetChildren = game.GetChildren
 local GetPlayers = Players.GetPlayers
 
-getgenv().FontSize = 13
-getgenv().Thickness = 2
-getgenv().Transparency = 1
-getgenv().Rainbow = false 
-
 local module = {}
 local Client = game.Players.LocalPlayer
 module.__index = module
@@ -523,10 +518,10 @@ local crnt = tick()
 game:GetService("RunService").RenderStepped:Connect(function(dt)
     if shared.Unloaded then 
         for i,v in pairs(espGroups) do 
-            v.groupEnabled = false 
-            v.espObjects = {}
-            v.lastCache = 0
-            v.cache = {}
+            for x,y in pairs(v.espObjects) do 
+                v.espObjects[y]:Remove()
+                v.espObjects[i] = nil 
+            end
         end 
     end
 
