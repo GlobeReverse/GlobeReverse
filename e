@@ -5,6 +5,8 @@ local RunService = game:GetService("RunService")
 local HttpService = game:GetService("HttpService")
 local CoreGui = game:GetService("CoreGui")
 
+local cache = { threads = {}, hooking = {}, signals = {}, debris = {}, drawings = {}, ticks = { MovementRag = tick(), LastPickUp = tick(), Break = tick() }, variables = { DoingSafe = false } }
+
 local Client = Players.LocalPlayer
 local Asset = syn and getsynasset or getcustomasset
 local Mouse = Client.GetMouse(Client)
@@ -18,6 +20,11 @@ local FindFirstChildOfClass = game.FindFirstChildOfClass
 local GetDescendants = game.GetDescendants
 local GetChildren = game.GetChildren
 local GetPlayers = Players.GetPlayers
+
+getgenv().FontSize = 13
+getgenv().Thickness = 2
+getgenv().Transparency = 1
+getgenv().Rainbow = false 
 
 local module = {}
 local Client = game.Players.LocalPlayer
@@ -339,7 +346,7 @@ local function runGroup(group)
             local BL, Vis3 = WorldToViewportPoint(cam, CFPoints.BL.p)
             local BR, Vis4 = WorldToViewportPoint(cam, CFPoints.BR.p)
     
-            if Vis1 and Vis2 and Vis3 and Vis4 and self.primarypart then
+            if Vis1 and Vis2 and Vis3 and Vis4 and self.primarypart and not getgenv().Unloaded then
                 self.Objects.box.Visible = true
                 self.Objects.box.PointA = Vector2.new(TR.X, TR.Y)
                 self.Objects.box.PointB = Vector2.new(TL.X, TL.Y)
@@ -361,7 +368,7 @@ local function runGroup(group)
         ["tracer"] = function(CFPoints,self)
             local TP, visible = WorldToViewportPoint(cam, CFPoints.Torso.p)
                 
-            if visible then
+            if visible and not getgenv().Unloaded then
                 self.Objects.tracer.Visible = true
                 self.Objects.tracer.From = Vector2.new(TP.X, TP.Y)
                 local b = getgenv().Centre and 2 or 1
@@ -382,7 +389,7 @@ local function runGroup(group)
         ["text"] = function(CFPoints,self)
             local TagPos, Vis5 = WorldToViewportPoint(cam, CFPoints.TagPos.p)
                         
-            if Vis5 then
+            if Vis5 and not getgenv().Unloaded then
                 local text = self.CustomText and self.CustomText(self.primarypart) or self.primarypart.Name
 
                 if text == "unloaded" or text == "HumanoidRootPart" then 
