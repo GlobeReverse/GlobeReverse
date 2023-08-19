@@ -514,16 +514,6 @@ end
 local crnt = tick()
 
 game:GetService("RunService").RenderStepped:Connect(function(dt)
-    if shared.Unloaded == true then 
-        warn('esp unloaded')
-        for i,v in pairs(espGroups) do 
-            for x,y in pairs(v.espObjects) do 
-                v.espObjects[y]:Remove()
-                v.espObjects[i] = nil 
-            end
-        end 
-    end
-
     if tick() - crnt > (1/60) then 
         crnt = tick()
         local count = 0
