@@ -5,8 +5,6 @@ local RunService = game:GetService("RunService")
 local HttpService = game:GetService("HttpService")
 local CoreGui = game:GetService("CoreGui")
 
-local cache = { threads = {}, hooking = {}, signals = {}, debris = {}, drawings = {}, ticks = { MovementRag = tick(), LastPickUp = tick(), Break = tick() }, variables = { DoingSafe = false } }
-
 local Client = Players.LocalPlayer
 local Asset = syn and getsynasset or getcustomasset
 local Mouse = Client.GetMouse(Client)
