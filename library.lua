@@ -157,22 +157,41 @@ function Library:CreateLabel(Properties, IsHud)
     return Library:Create(_Instance, Properties);
 end;
 
-local coooonector = function(signal, callback)
-    local connection = signal:Connect(callback)
-
-    return connection
-end
-
 function Library:MakeDraggable(Instance, Cutoff,dragoutline)
     Instance.Active = true;
 
     if dragoutline then
+        local start, objectposition, dragging, currentpos
+
         Instance.InputBegan:Connect(function(Input)
-            dragoutline.Visible = true 
+            if Input.UserInputType == Enum.UserInputType.MouseButton1 then
+                dragging = true
+                start = Input.Position
+                dragoutline.Visible = true
+                objectposition = Instance.Position
+            end
+        end)
+
+        game:GetService("UserInputService").InputChanged:Connect(function(Input)
+            if Input.UserInputType == Enum.UserInputType.MouseMovement and dragging then
+                currentpos = UDim2.new(objectposition.X.Scale, objectposition.X.Offset + (Input.Position - start).X, objectposition.Y.Scale, objectposition.Y.Offset + (Input.Position - start).Y)
+                dragoutline.Position = currentpos
+            end
+        end)
+
+        game:GetService("UserInputService").InputEnded:Connect(function(Input)
+            if Input.UserInputType == Enum.UserInputType.MouseButton1 and dragging then 
+                dragging = false
+                dragoutline.Visible = false
+                Instance.Position = currentpos
+            end
+        end)
+    else 
+        Instance.InputBegan:Connect(function(Input)
             if Input.UserInputType == Enum.UserInputType.MouseButton1 then
                 local ObjPos = Vector2.new(
-                    Mouse.X - dragoutline.AbsolutePosition.X,
-                    Mouse.Y - dragoutline.AbsolutePosition.Y
+                    Mouse.X - Instance.AbsolutePosition.X,
+                    Mouse.Y - Instance.AbsolutePosition.Y
                 );
     
                 if ObjPos.Y > (Cutoff or 40) then
@@ -180,23 +199,12 @@ function Library:MakeDraggable(Instance, Cutoff,dragoutline)
                 end;
     
                 while InputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton1) do
-                    dragoutline.Position = UDim2.new(
+                    Instance.Position = UDim2.new(
                         0,
-                        Mouse.X - ObjPos.X + (dragoutline.Size.X.Offset * dragoutline.AnchorPoint.X),
+                        Mouse.X - ObjPos.X + (Instance.Size.X.Offset * Instance.AnchorPoint.X),
                         0,
-                        Mouse.Y - ObjPos.Y + (dragoutline.Size.Y.Offset * dragoutline.AnchorPoint.Y)
+                        Mouse.Y - ObjPos.Y + (Instance.Size.Y.Offset * Instance.AnchorPoint.Y)
                     );
-    
-                    RenderStepped:Wait();
-                end;
-            end;
-        end)
-
-        coooonector(Instance.InputEnded.function(Input)
-            dragoutline.Visible = false 
-            if Input.UserInputType == Enum.UserInputType.MouseButton1 then
-                while InputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton1) do
-                    dragoutline.Position = dragoutline.Position
     
                     RenderStepped:Wait();
                 end;
@@ -2987,17 +2995,20 @@ function Library:CreateWindow(...)
         Parent = ScreenGui;
     });
 
-    local dragoutline = Library:Create("Frame", {
-        Size = Config.Size,
+    local dragoutline = Library:Create('Frame', {
+        AnchorPoint = Config.AnchorPoint,
+        BackgroundColor3 = Color3.new(0, 0, 0),
+        BackgroundTransparency = 0.4,
+        BorderSizePixel = 4,
+        BorderColor3 = Library.AccentColor,
         Position = Config.Position,
-        Filled = false,
-        Thickness = 1,
-        Theme = "Accent",
-        ZIndex = 1,
-        Visible = false,
-    })
+        Size = Config.Size,
+        Visible = false;
+        ZIndex = 0;
+        Parent = ScreenGui;
+    });
 
-    Library:MakeDraggable(Outer, 25,dragoutline);
+    Library:MakeDraggable(Outer, 300,dragoutline);
 
     local Inner = Library:Create('Frame', {
         BackgroundColor3 = Library.MainColor;
