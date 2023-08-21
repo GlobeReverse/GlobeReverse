@@ -11,7 +11,7 @@ local Mouse = LocalPlayer:GetMouse();
 
 local ScreenGui = Instance.new('ScreenGui');
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Global;
-ScreenGui.Parent = gethui() or CoreGui or Players.LocalPlayer.PlayerGui;
+ScreenGui.Parent = gethui() or CoreGui;
 
 local Toggles = {};
 local Options = {};
@@ -157,32 +157,52 @@ function Library:CreateLabel(Properties, IsHud)
     return Library:Create(_Instance, Properties);
 end;
 
-function Library:MakeDraggable(Instance, Cutoff)
+local coooonector = function(signal, callback)
+    local connection = signal:Connect(callback)
+
+    return connection
+end
+
+function Library:MakeDraggable(Instance, Cutoff,dragoutline)
     Instance.Active = true;
 
-    Instance.InputBegan:Connect(function(Input)
-        if Input.UserInputType == Enum.UserInputType.MouseButton1 then
-            local ObjPos = Vector2.new(
-                Mouse.X - Instance.AbsolutePosition.X,
-                Mouse.Y - Instance.AbsolutePosition.Y
-            );
-
-            if ObjPos.Y > (Cutoff or 40) then
-                return;
-            end;
-
-            while InputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton1) do
-                Instance.Position = UDim2.new(
-                    0,
-                    Mouse.X - ObjPos.X + (Instance.Size.X.Offset * Instance.AnchorPoint.X),
-                    0,
-                    Mouse.Y - ObjPos.Y + (Instance.Size.Y.Offset * Instance.AnchorPoint.Y)
+    if dragoutline then
+        Instance.InputBegan:Connect(function(Input)
+            dragoutline.Visible = true 
+            if Input.UserInputType == Enum.UserInputType.MouseButton1 then
+                local ObjPos = Vector2.new(
+                    Mouse.X - dragoutline.AbsolutePosition.X,
+                    Mouse.Y - dragoutline.AbsolutePosition.Y
                 );
-
-                RenderStepped:Wait();
+    
+                if ObjPos.Y > (Cutoff or 40) then
+                    return;
+                end;
+    
+                while InputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton1) do
+                    dragoutline.Position = UDim2.new(
+                        0,
+                        Mouse.X - ObjPos.X + (dragoutline.Size.X.Offset * dragoutline.AnchorPoint.X),
+                        0,
+                        Mouse.Y - ObjPos.Y + (dragoutline.Size.Y.Offset * dragoutline.AnchorPoint.Y)
+                    );
+    
+                    RenderStepped:Wait();
+                end;
             end;
-        end;
-    end)
+        end)
+
+        coooonector(Instance.InputEnded.function(Input)
+            dragoutline.Visible = false 
+            if Input.UserInputType == Enum.UserInputType.MouseButton1 then
+                while InputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton1) do
+                    dragoutline.Position = dragoutline.Position
+    
+                    RenderStepped:Wait();
+                end;
+            end;
+        end)
+    end
 end;
 
 function Library:AddToolTip(InfoStr, HoverInstance)
@@ -2967,7 +2987,17 @@ function Library:CreateWindow(...)
         Parent = ScreenGui;
     });
 
-    Library:MakeDraggable(Outer, 25);
+    local dragoutline = Library:Create("Frame", {
+        Size = Config.Size,
+        Position = Config.Position,
+        Filled = false,
+        Thickness = 1,
+        Theme = "Accent",
+        ZIndex = 1,
+        Visible = false,
+    })
+
+    Library:MakeDraggable(Outer, 25,dragoutline);
 
     local Inner = Library:Create('Frame', {
         BackgroundColor3 = Library.MainColor;
