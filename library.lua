@@ -161,19 +161,23 @@ function Library:MakeDraggable(Instance, Cutoff,dragoutline)
     Instance.Active = true;
 
     if dragoutline then
-        local start, objectposition, dragging, currentpos
+        local start, objectposition, dragging, currentpos, lastclick
 
         Instance.InputBegan:Connect(function(Input)
             if Input.UserInputType == Enum.UserInputType.MouseButton1 then
                 dragging = true
                 start = Input.Position
-                dragoutline.Visible = true
+                lastclick = tick()
                 objectposition = Instance.Position
             end
         end)
 
         game:GetService("UserInputService").InputChanged:Connect(function(Input)
             if Input.UserInputType == Enum.UserInputType.MouseMovement and dragging then
+                if (lastclick - tick()) > 0.2 then 
+                    dragoutline.Visible = true
+                end
+
                 currentpos = UDim2.new(objectposition.X.Scale, objectposition.X.Offset + (Input.Position - start).X, objectposition.Y.Scale, objectposition.Y.Offset + (Input.Position - start).Y)
                 dragoutline.Position = currentpos
             end
