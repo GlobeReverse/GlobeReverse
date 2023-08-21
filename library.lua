@@ -174,6 +174,7 @@ function Library:MakeDraggable(Instance, Cutoff,dragoutline)
 
         game:GetService("UserInputService").InputChanged:Connect(function(Input)
             if Input.UserInputType == Enum.UserInputType.MouseMovement and dragging then
+                warn('yessss')
                 if (lastclick - tick()) > 0.2 then 
                     dragoutline.Visible = true
                 end
