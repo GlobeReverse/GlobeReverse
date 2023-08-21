@@ -11,6 +11,8 @@ local RunService = game:GetService "RunService"
 shared.Network = {}
 shared.Network.temp = {}
 shared.Network.signals = {}
+shared.Network.drawings = {}
+shared.Network.ticks = { MoveTick = tick(), BreakTick = tick(), UnlockTick = tick(), PickupTick = tick(), AmmoTick = tick(), AllowanceTick = tick () }
 
 -- Quick Indexing
 
@@ -68,11 +70,4 @@ shared.Network.IsValid = function(self, plr)
 
     if not (plr.Character.Humanoid.Health > 0) then return false end
     return true
-end
-
-shared.Network.DistanceFromMouse = function(self, vector2)
-    local mouse = game:GetService "Players".LocalPlayer:GetMouse()
-    local mousePosition = Vector2.new(mouse.X, mouse.Y)
-
-    return (vector2 - mousePosition).Magnitude
 end
