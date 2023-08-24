@@ -75,9 +75,12 @@ shared.Network.IsValid = function(self, plr)
 end
 
 shared.Network.Intersecting = function(self, origin, part)
-    local Direction = shared.Network:Direction(origin, part.Position)
+    local Direction = shared.origin(shared, origin, part.Position)
 
-    local Hitpart = workspace:FindPartOnRayWithIgnoreList(Ray.new(origin, Direction), {workspace.Map,workspace.Debris,workspace.Filter,workspace.Map:WaitForChild("ATMz"),workspace.Map:WaitForChild("StreetLights"),workspace.Map:WaitForChild("BredMakurz"),workspace.Map:WaitForChild("Shopz"),client.Character}, false, true)
+    local raycast_params = RaycastParams.new() do
+        raycast_params.FilterType = Enum.RaycastFilterType.Whitelist
+        raycast_params.FilterDescendantsInstances = {workspace.Map}
+    end
 
-    return Hitpart
+    return workspace:Raycast(origin, Direction, raycast_params)
 end
