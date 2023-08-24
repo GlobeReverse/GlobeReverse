@@ -75,7 +75,7 @@ shared.Network.IsValid = function(self, plr)
 end
 
 shared.Network.Intersecting = function(self, origin, part)
-    local Direction = shared.Network:Direction(origin, part.Position)
+    local Direction = shared.Network.Direction(shared,origin, part.Position)
 
     local raycast_params = RaycastParams.new() do
         raycast_params.FilterType = Enum.RaycastFilterType.Whitelist
