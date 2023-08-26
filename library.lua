@@ -456,6 +456,10 @@ do
             ColorPicker.Vib = V;
         end;
 
+        function ColorPicker:GetColor()
+            return ColorPicker.Value
+        end
+
         ColorPicker:SetHSVFromRGB(ColorPicker.Value);
 
         local DisplayFrame = Library:Create('Frame', {
