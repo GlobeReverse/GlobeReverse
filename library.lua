@@ -2856,7 +2856,7 @@ do
 
     Library.KeybindFrame = KeybindOuter;
     Library.KeybindContainer = KeybindContainer;
-    Library:MakeDraggable(KeybindOuter);
+    Library:(KeybindOuter);
 end;
 
 function Library:SetWatermarkVisibility(Bool)
@@ -3009,7 +3009,7 @@ function Library:CreateWindow(...)
         Position = Config.Position,
         Size = Config.Size,
         Visible = false;
-        ZIndex = 0;
+        ZIndex = 1;
         Parent = ScreenGui;
     });
 
