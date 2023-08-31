@@ -526,13 +526,20 @@ game:GetService("RunService").RenderStepped:Connect(function(dt)
         local count = 0
 
         for i,v in pairs(espGroups) do 
-            if v.groupEnabled then                                     
-                local add = runGroup(v)
-
-                if add ~= nil then
-                    count += add
+            if shared.Unloaded == true then 
+                for x,y in pairs(v.espObjects) do 
+                    v.espObjects[x]:Remove()
+                    v.espObjects[x] = nil 
                 end
-            end 
+            else 
+                if v.groupEnabled then                                     
+                    local add = runGroup(v)
+    
+                    if add ~= nil then
+                        count += add
+                    end
+                end
+            end
         end 
     end 
 end)
