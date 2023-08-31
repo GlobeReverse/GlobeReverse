@@ -346,7 +346,7 @@ local function runGroup(group)
             local BL, Vis3 = WorldToViewportPoint(cam, CFPoints.BL.p)
             local BR, Vis4 = WorldToViewportPoint(cam, CFPoints.BR.p)
     
-            if Vis1 and Vis2 and Vis3 and Vis4 and self.primarypart and not getgenv().Unloaded then
+            if Vis1 and Vis2 and Vis3 and Vis4 and self.primarypart then
                 self.Objects.box.Visible = true
                 self.Objects.box.PointA = Vector2.new(TR.X, TR.Y)
                 self.Objects.box.PointB = Vector2.new(TL.X, TL.Y)
@@ -368,7 +368,7 @@ local function runGroup(group)
         ["tracer"] = function(CFPoints,self)
             local TP, visible = WorldToViewportPoint(cam, CFPoints.Torso.p)
                 
-            if visible and not getgenv().Unloaded then
+            if visible then
                 self.Objects.tracer.Visible = true
                 self.Objects.tracer.From = Vector2.new(TP.X, TP.Y)
                 local b = getgenv().Centre and 2 or 1
@@ -389,7 +389,7 @@ local function runGroup(group)
         ["text"] = function(CFPoints,self)
             local TagPos, Vis5 = WorldToViewportPoint(cam, CFPoints.TagPos.p)
                         
-            if Vis5 and not getgenv().Unloaded then
+            if Vis5 then
                 local text = self.CustomText and self.CustomText(self.primarypart) or self.primarypart.Name
 
                 if text == "unloaded" or text == "HumanoidRootPart" then 
