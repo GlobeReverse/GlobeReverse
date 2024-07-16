@@ -1,3 +1,5 @@
+-- i didnt make this shit just added renderstep and usage of flags to help a friend
+
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
 local Window = OrionLib:MakeWindow({Name = "nigga of the library", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
