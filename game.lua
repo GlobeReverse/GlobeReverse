@@ -8,6 +8,8 @@ local RunService = game:GetService("RunService")
 
 local player = game.Players.LocalPlayer
 
+local orbs = game:GetService("Workspace").GameAssets.GlobalAssets.OrbSpawns
+
 -- tabs
 local Tab = Window:MakeTab({
     Name = "Tab 1",
@@ -41,8 +43,6 @@ Tab:AddToggle({ Name = "goodfarm!", Default = false, Flag = "autofarm" })
 
 RunService.RenderStepped:Connect(function()
     if OrionLib.Flags['autofarm'].Value then 
-        local orbs = game:GetService("Workspace").GameAssets.GlobalAssets.OrbSpawns
-
         for i, v in pairs(orbs:GetChildren()) do
             if v:IsA("MeshPart") then
                 if player and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
